@@ -68,6 +68,9 @@
                 </configuration>
             </plugin>
         </plugins>
+
+        <finalName>5ARCTIC5-G5-Automatech</finalName>
+
     </build>
 
 </project>
