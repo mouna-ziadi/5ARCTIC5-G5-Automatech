@@ -92,7 +92,6 @@ public class InvoiceServiceImplTest {
 
         invoiceService.assignOperatorToInvoice(idOperator, idInvoice);
 
-        // Rechargez l'opérateur depuis la base de données pour vous assurer que les invoices sont initialisées.
         Operator operator = operatorRepository.findById(idOperator).orElse(null);
 
         assertNotNull(operator);
