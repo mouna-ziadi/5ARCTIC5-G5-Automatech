@@ -16,20 +16,6 @@
     <properties>
         <java.version>11</java.version>
 
-
-
-        <!-- JaCoCo Properties -->
-
-        <sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
-        <sonar.language>java</sonar.language>
-        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
-        <sonar.sources>src/main</sonar.sources>
-        <sonar.tests>src/test</sonar.tests>
-        <sonar.java.binaries>target/classes</sonar.java.binaries>
-        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
-
-
-
     </properties>
     <dependencies>
         <dependency>
@@ -130,5 +116,12 @@
 
         <finalName>5ARCTIC5-G5-Automatech</finalName>
     </build>
+    <distributionManagement>
+        <repository>
+            <id>${NEXUS_REPOSITORY}</id>
+            <!--suppress UnresolvedMavenProperty -->
+            <url>http://${NEXUS_IP}:${NEXUS_PORT}/repository/${NEXUS_REPOSITORY}/</url>
+        </repository>
+    </distributionManagement>
 
 </project>
