@@ -1,6 +1,6 @@
 package tn.esprit.devops_project.services;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -33,7 +33,7 @@ class StockServiceImplTest {
     public void setUp() {
         stockRepository = mock(StockRepository.class);
         productRepository = mock(ProductRepository.class);
-        StockServiceImpl stockService = new StockServiceImpl(stockRepository, productRepository);
+        stockService = new StockServiceImpl(stockRepository, productRepository); // Utilisez la variable de classe
     }
 
     @Test
