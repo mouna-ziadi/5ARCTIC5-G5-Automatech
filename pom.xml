@@ -74,7 +74,7 @@
     <distributionManagement>
         <repository>
             <id>deploymentRepo</id>
-            <url>http://192.168.157.147:8081/repository/automatech-repository/</url>
+            <url>http://192.168.157.147:8081/#admin/repository/repositories:automatech-repository</url>
         </repository>
     </distributionManagement>
 
