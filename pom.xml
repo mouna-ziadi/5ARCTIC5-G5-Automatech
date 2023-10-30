@@ -106,5 +106,11 @@
         </plugins>
         <finalName>5ARCTIC5-G5-Automatech</finalName>
     </build>
-
+    <distributionManagement>
+        <repository>
+            <id>deploymentRepo</id>
+            <name>Nexus Repository</name>
+            <url>http://localhost:8081/repository/maven-releases/</url>
+        </repository>
+    </distributionManagement>
 </project>
