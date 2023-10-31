@@ -1,0 +1,24 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: projetdevops
+    ports:
+      - "3306:3306"
+
+  spring-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: spring-app-container
+    depends_on:
+      - mysql
+    ports:
+      - "8083:8083"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/projetdevops
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
