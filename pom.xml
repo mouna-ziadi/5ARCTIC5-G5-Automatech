@@ -98,6 +98,9 @@
             <plugin>
                 <artifactId>maven-deploy-plugin</artifactId>
                 <version>3.0.0</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
                 <executions>
                     <execution>
                         <id>default-deploy</id>
