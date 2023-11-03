@@ -32,6 +32,7 @@ public class StockServiceImpl implements IStockService {
         return stockRepository.findAll();
     }
 
+    /*
     @Override
     public Stock findStockByIdProduct(Long productId) {
         // Rechercher le produit par son ID
@@ -42,6 +43,8 @@ public class StockServiceImpl implements IStockService {
         // Récupérer le stock auquel appartient le produit
         return product.getStock();
     }
+
+     */
 
 
 
