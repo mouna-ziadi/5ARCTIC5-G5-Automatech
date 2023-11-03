@@ -1,6 +1,6 @@
 version: '3'
 services:
-  mysql:
+  db:
     image: mysql:latest
     container_name: mysql-container
     environment:
@@ -16,7 +16,7 @@ services:
       - "8082:80"
     restart: always
     depends_on:
-      - mysql
+      - db
 
   spring-app:
     build:
@@ -24,11 +24,11 @@ services:
       dockerfile: Dockerfile
     container_name: spring-app-container
     depends_on:
-      - mysql
+      - db
     ports:
       - "8083:8083"
 
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/projetdevops
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-container:3306/projetdevops
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: mukit
