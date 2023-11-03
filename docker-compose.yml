@@ -5,7 +5,7 @@ services:
     container_name: mysql-container
     environment:
       MYSQL_USER: root
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: mukit
       MYSQL_DATABASE: projetdevops
     ports:
       - "3306:3306"
@@ -31,4 +31,4 @@ services:
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/projetdevops
       SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_DATASOURCE_PASSWORD: mukit
