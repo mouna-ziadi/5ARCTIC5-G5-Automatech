@@ -6,6 +6,7 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.devops_project.entities.Operator;
+import tn.esprit.devops_project.exception.BadRequestException;
 import tn.esprit.devops_project.repositories.OperatorRepository;
 import tn.esprit.devops_project.services.Iservices.IOperatorService;
 
@@ -24,6 +25,13 @@ public class OperatorServiceImpl implements IOperatorService {
 
 	@Override
 	public Operator addOperator(Operator operator) {
+
+		Boolean existsEmail = operatorRepository
+				.selectExistsEmail(operator.getEmail());
+		if (existsEmail) {
+			throw new BadRequestException(
+					"Email " + operator.getEmail() + " taken");
+		}
 		return operatorRepository.save(operator);
 	}
 

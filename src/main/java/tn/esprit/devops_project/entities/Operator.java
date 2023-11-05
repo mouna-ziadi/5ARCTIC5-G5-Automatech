@@ -28,9 +28,11 @@ public class Operator implements Serializable{
 	Long idOperateur;
 	String fname;
 	String lname;
+	String email;
 	String password;
 	@OneToMany
 	@JsonIgnore
 	Set<Invoice> invoices;
-	
+
+
 }
