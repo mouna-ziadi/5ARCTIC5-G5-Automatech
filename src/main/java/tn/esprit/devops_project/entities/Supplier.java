@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.micrometer.core.ipc.http.HttpSender;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -34,7 +35,7 @@ public class Supplier implements Serializable {
 	@OneToMany(mappedBy="supplier")
 	@JsonIgnore
 	Set<Invoice> invoices;
-    
 
-	
+
+
 }
