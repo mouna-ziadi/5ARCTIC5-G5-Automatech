@@ -2,26 +2,13 @@ version: '3'
 
 services:
   app:
-    image: moha1992/devopsback
+    image: moha1992/devopstest:latest
     ports:
       - "8082:8082"
     env_file:
       - .env
     depends_on:
       - db
-    networks:
-      - mynetwork
-
-  app1:
-    image: moha1992/devopsfront
-    ports:
-      - "8089:80"
-    env_file:
-      - .env
-    environment:
-      - API_URL=http://app:8082  
-    depends_on:
-      - app
     networks:
       - mynetwork
 
