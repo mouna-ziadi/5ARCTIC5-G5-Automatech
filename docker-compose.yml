@@ -2,7 +2,7 @@ version: '3'
 
 services:
   app:
-    image: moha1992/5ARCTIC5-G5-Automatech
+    image: moha1992/devopsback
     ports:
       - "8083:8083"
     env_file:
