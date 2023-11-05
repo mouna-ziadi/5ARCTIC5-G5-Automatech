@@ -4,7 +4,7 @@ services:
   app:
     image: moha1992/devopsback
     ports:
-      - "8083:8083"
+      - "8082:8082"
     env_file:
       - .env
     depends_on:
