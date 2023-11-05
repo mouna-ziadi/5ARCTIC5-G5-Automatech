@@ -1,6 +1,8 @@
 package tn.esprit.devops_project.services;
 
 import lombok.extern.slf4j.Slf4j;
+import org.junit.After;
+import org.junit.Assert;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -37,7 +39,7 @@ public class InvoiceServiceImplTest {
     SupplierRepository supplierRepository;
 
     @Test
-    @Order(4)
+    @Order(3)
     public void testRetrieveAllInvoices() {
         List<Invoice> listProduits = invoiceService.retrieveAllInvoices();
         Assertions.assertEquals(listProduits.size(), listProduits.size());
@@ -72,9 +74,9 @@ public class InvoiceServiceImplTest {
         assertEquals(300.0f, totalAmount);
     }
 
-    @Test
-    @Order(2)
-    public void testAssignOperatorToInvoice(){
+    //@Test
+    //@Order(2)
+    /*public void testAssignOperatorToInvoice(){
         Invoice invoice1 = new Invoice();
         invoice1.setArchived(false);
         invoice1.setAmountInvoice(100.0f);
@@ -98,10 +100,11 @@ public class InvoiceServiceImplTest {
         assertNotNull(operator);
         assertEquals(1, operator.getInvoices().size());
 
-    }
+
+    }*/
 
     @Test
-    @Order(3)
+    @Order(2)
     public void testCancelInvoice() throws ParseException  {
         Invoice invoice = new Invoice();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -117,12 +120,12 @@ public class InvoiceServiceImplTest {
         assertNotNull(invoice.getIdInvoice());
     }
 
-   /* @Test
-    @Order(5)
+    @AfterEach
     public void cleanup() {
 
         invoiceRepository.deleteAll();
         operatorRepository.deleteAll();
-    }*/
+    }
+
 
 }

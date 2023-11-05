@@ -65,4 +65,24 @@ public class InvoiceServiceImpl implements IInvoiceService {
 	}
 
 
+
+	//@Override
+	/*public void unassignOperatorFromInvoice(Long operatorId, Long invoiceId) {
+
+		Operator operator = operatorRepository.findById(operatorId).orElse(null);
+		Invoice invoice = invoiceRepository.findById(invoiceId).orElse(null);
+
+		if (operator != null && invoice != null) {
+			// Vérifier si l'opérateur est associé à la facture
+			if (operator.getInvoices().contains(invoice)) {
+				// Retirer la facture de la liste des factures de l'opérateur
+				operator.getInvoices().remove(invoice);
+				operatorRepository.save(operator);
+			}
+		}
+	}*/
+
+
+
+
 }
