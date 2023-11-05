@@ -66,19 +66,19 @@
             <version>5.8.2</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
-    <distributionManagement>
+    <!--<distributionManagement>
         <repository>
             <id>deploymentRepo</id>
             <url>http://192.168.157.128:8081/repository/maven-releases/</url>
         </repository>
-    </distributionManagement>
+    </distributionManagement>-->
 
 
     <build>
@@ -95,7 +95,7 @@
                     </excludes>
                 </configuration>
             </plugin>
-            <plugin>
+           <!-- <plugin>
                 <artifactId>maven-deploy-plugin</artifactId>
                 <version>3.0.0</version>
                 <configuration>
@@ -110,9 +110,9 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
 
-            <plugin>
+            <!--<plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>
                     jacoco-maven-plugin</artifactId>
@@ -144,9 +144,9 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
 
-            <plugin>
+           <!-- <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
                 <version>3.6.0.1398</version>
@@ -160,7 +160,7 @@
                         <include>**/*Test.java</include>
                     </includes>
                 </configuration>
-            </plugin>
+            </plugin>-->
 
         </plugins>
 
