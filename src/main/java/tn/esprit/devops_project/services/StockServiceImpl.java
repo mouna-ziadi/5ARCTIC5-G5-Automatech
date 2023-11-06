@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import tn.esprit.devops_project.services.Iservices.IStockService;
 import tn.esprit.devops_project.entities.Stock;
 import tn.esprit.devops_project.repositories.StockRepository;
-
 import java.util.List;
 
 @Service
@@ -23,7 +22,6 @@ public class StockServiceImpl implements IStockService {
     public Stock retrieveStock(Long id) {
         return stockRepository.findById(id).orElseThrow(() -> new NullPointerException("Stock not found"));
     }
-
     @Override
     public List<Stock> retrieveAllStock() {
         return stockRepository.findAll();

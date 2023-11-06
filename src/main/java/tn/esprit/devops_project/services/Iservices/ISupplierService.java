@@ -1,7 +1,6 @@
 package tn.esprit.devops_project.services.Iservices;
 
 import tn.esprit.devops_project.entities.Supplier;
-
 import java.util.List;
 
 public interface ISupplierService {

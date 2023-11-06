@@ -1,8 +1,6 @@
 package tn.esprit.devops_project.services;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.After;
-import org.junit.Assert;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -16,6 +14,8 @@ import tn.esprit.devops_project.repositories.InvoiceRepository;
 import tn.esprit.devops_project.repositories.OperatorRepository;
 import tn.esprit.devops_project.repositories.SupplierRepository;
 import tn.esprit.devops_project.services.Iservices.IInvoiceService;
+import tn.esprit.devops_project.services.Iservices.IOperatorService;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -32,6 +32,8 @@ public class InvoiceServiceImplTest {
     @Autowired
     IInvoiceService invoiceService;
     @Autowired
+    IOperatorService operatorService;
+    @Autowired
     InvoiceRepository invoiceRepository;
     @Autowired
     OperatorRepository operatorRepository;
@@ -39,7 +41,7 @@ public class InvoiceServiceImplTest {
     SupplierRepository supplierRepository;
 
     @Test
-    @Order(3)
+    @Order(5)
     public void testRetrieveAllInvoices() {
         List<Invoice> listProduits = invoiceService.retrieveAllInvoices();
         Assertions.assertEquals(listProduits.size(), listProduits.size());
@@ -74,9 +76,9 @@ public class InvoiceServiceImplTest {
         assertEquals(300.0f, totalAmount);
     }
 
-    //@Test
-    //@Order(2)
-    /*public void testAssignOperatorToInvoice(){
+    @Test
+    @Order(2)
+    public void testAssignOperatorToInvoice() {
         Invoice invoice1 = new Invoice();
         invoice1.setArchived(false);
         invoice1.setAmountInvoice(100.0f);
@@ -99,12 +101,11 @@ public class InvoiceServiceImplTest {
 
         assertNotNull(operator);
         assertEquals(1, operator.getInvoices().size());
-
-
-    }*/
+        operatorService.deleteOperator(idOperator);
+    }
 
     @Test
-    @Order(2)
+    @Order(3)
     public void testCancelInvoice() throws ParseException  {
         Invoice invoice = new Invoice();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -118,14 +119,14 @@ public class InvoiceServiceImplTest {
 
         invoiceService.cancelInvoice(invoice.getIdInvoice());
         assertNotNull(invoice.getIdInvoice());
+        invoice.setArchived(true);
+        invoiceRepository.save(invoice);
     }
 
-    @AfterEach
+    @Test
+    @Order(6)
     public void cleanup() {
-
         invoiceRepository.deleteAll();
-        operatorRepository.deleteAll();
     }
-
 
 }
