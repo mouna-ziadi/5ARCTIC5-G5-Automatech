@@ -1,4 +1,4 @@
 FROM openjdk:11
-EXPOSE 8082
+EXPOSE 8083
 ADD target/5ARCTIC5-G5-Automatech.jar 5ARCTIC5-G5-Automatech.jar
 ENTRYPOINT ["java","-jar","/5ARCTIC5-G5-Automatech.jar"]

@@ -1,41 +1,25 @@
 version: '3'
-
 services:
-  app:
-    image: imenelhraiech/imenelhraiech-5arctic5-g5-automatech
-    ports:
-      - "8082:8082"
-    env_file:
-      - .env
-    depends_on:
-      - db
-    networks:
-      - mynetwork
-
-  db:
+  mysql:
     image: mysql:latest
-    container_name: db
-    ports:
-      - "3306:3306"
-    env_file:
-      - .env
+    container_name: mysql-container
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: devops
-    networks:
-      - mynetwork
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
+      MYSQL_DATABASE: projetdevops
     ports:
-      - "8083:80"
-    environment:
-      PMA_HOST: db
-      PMA_PORT: 3306
-    depends_on:
-      - db
-    networks:
-      - mynetwork
+      - "3306:3306"
 
-networks:
-  mynetwork:
+  spring-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: spring-app-container
+    depends_on:
+      - mysql
+    ports:
+      - "8083:8083"
+
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/projetdevops
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
