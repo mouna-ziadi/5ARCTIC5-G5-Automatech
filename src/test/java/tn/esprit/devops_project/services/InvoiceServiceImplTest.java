@@ -41,7 +41,7 @@ public class InvoiceServiceImplTest {
     SupplierRepository supplierRepository;
 
     @Test
-    @Order(5)
+    @Order(4)
     public void testRetrieveAllInvoices() {
         List<Invoice> listProduits = invoiceService.retrieveAllInvoices();
         Assertions.assertEquals(listProduits.size(), listProduits.size());
@@ -76,9 +76,9 @@ public class InvoiceServiceImplTest {
         assertEquals(300.0f, totalAmount);
     }
 
-    @Test
-    @Order(2)
-    public void testAssignOperatorToInvoice() {
+   @Test
+   @Order(2)
+     public void testAssignOperatorToInvoice() {
         Invoice invoice1 = new Invoice();
         invoice1.setArchived(false);
         invoice1.setAmountInvoice(100.0f);
@@ -124,7 +124,7 @@ public class InvoiceServiceImplTest {
     }
 
     @Test
-    @Order(6)
+    @Order(5)
     public void cleanup() {
         invoiceRepository.deleteAll();
     }
