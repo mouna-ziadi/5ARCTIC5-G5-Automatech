@@ -29,6 +29,11 @@ services:
       MANAGEMENT_ENDPOINT_PROMETHEUS_ENABLED: 'true'
       MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED: 'true'
 
+  front:
+    image: imenelhraiech/projetdevopsfront
+    ports:
+      - "80:80"
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
