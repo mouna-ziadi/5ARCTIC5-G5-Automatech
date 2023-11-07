@@ -1,54 +1,24 @@
 version: '3'
-
 services:
-  app:
-    image: moha1992/5ARCTIC5-G5-Automatech
-    ports:
-      - "8083:8083"
-    env_file:
-      - .env
-    depends_on:
-      - db
-    networks:
-      - mynetwork
-
-  app1:
-    image: moha1992/devopsfront
-    ports:
-      - "8089:80"
-    env_file:
-      - .env
-    environment:
-      - API_URL=http://app:8082  
-    depends_on:
-      - app
-    networks:
-      - mynetwork
-
-  db:
+  mysql:
     image: mysql:latest
-    container_name: db
-    ports:
-      - "3306:3306"
-    env_file:
-      - .env
+    container_name: mysql-container
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: devops
-    networks:
-      - mynetwork
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
+      MYSQL_DATABASE: projetdevops
     ports:
-      - "8081:80"
-    environment:
-      PMA_HOST: db
-      PMA_PORT: 3306
-    depends_on:
-      - db
-    networks:
-      - mynetwork
+      - "3306:3306"
 
-networks:
-  mynetwork:
+  spring-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: spring-app-container
+    depends_on:
+      - mysql
+    ports:
+      - "8083:8083"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/projetdevops
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root

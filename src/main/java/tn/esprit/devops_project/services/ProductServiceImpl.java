@@ -44,7 +44,8 @@ public class ProductServiceImpl implements IProductService {
 
     @Override
     public void deleteProduct(Long id) {
-        productRepository.deleteById(id);
+        Product product = productRepository.findById(id).orElseThrow(() -> new NullPointerException("Product not found"));
+        productRepository.delete(product); // Use delete method instead of deleteById
     }
 
     @Override
