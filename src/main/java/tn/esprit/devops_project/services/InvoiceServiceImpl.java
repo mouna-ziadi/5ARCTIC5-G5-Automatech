@@ -10,7 +10,7 @@ import tn.esprit.devops_project.repositories.InvoiceDetailRepository;
 import tn.esprit.devops_project.repositories.InvoiceRepository;
 import tn.esprit.devops_project.repositories.OperatorRepository;
 import tn.esprit.devops_project.repositories.SupplierRepository;
-import tn.esprit.devops_project.services.Iservices.IInvoiceService;
+import tn.esprit.devops_project.services.iServices.IInvoiceService;
 
 import java.util.Date;
 import java.util.List;
@@ -24,7 +24,7 @@ public class InvoiceServiceImpl implements IInvoiceService {
 	final OperatorRepository operatorRepository;
 	final InvoiceDetailRepository invoiceDetailRepository;
 	final SupplierRepository supplierRepository;
-	
+	String msg = "Invoice not found";
 	@Override
 	public List<Invoice> retrieveAllInvoices() {
 		return invoiceRepository.findAll();
@@ -32,7 +32,7 @@ public class InvoiceServiceImpl implements IInvoiceService {
 	@Override
 	public void cancelInvoice(Long invoiceId) {
 		// method 01
-		Invoice invoice = invoiceRepository.findById(invoiceId).orElseThrow(() -> new NullPointerException("Invoice not found"));
+		Invoice invoice = invoiceRepository.findById(invoiceId).orElseThrow(() -> new NullPointerException(msg));
 		invoice.setArchived(true);
 		invoiceRepository.save(invoice);
 		//method 02 (Avec JPQL)
@@ -42,7 +42,7 @@ public class InvoiceServiceImpl implements IInvoiceService {
 	@Override
 	public Invoice retrieveInvoice(Long invoiceId) {
 
-		return invoiceRepository.findById(invoiceId).orElseThrow(() -> new NullPointerException("Invoice not found"));
+		return invoiceRepository.findById(invoiceId).orElseThrow(() -> new NullPointerException(msg));
 	}
 
 	@Override
@@ -53,7 +53,7 @@ public class InvoiceServiceImpl implements IInvoiceService {
 
 	@Override
 	public void assignOperatorToInvoice(Long idOperator, Long idInvoice) {
-		Invoice invoice = invoiceRepository.findById(idInvoice).orElseThrow(() -> new NullPointerException("Invoice not found"));
+		Invoice invoice = invoiceRepository.findById(idInvoice).orElseThrow(() -> new NullPointerException(msg));
 		Operator operator = operatorRepository.findById(idOperator).orElseThrow(() -> new NullPointerException("Operator not found"));
 		operator.getInvoices().add(invoice);
 		operatorRepository.save(operator);

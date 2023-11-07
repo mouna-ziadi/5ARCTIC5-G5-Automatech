@@ -32,7 +32,7 @@ public class Operator implements Serializable{
 	String password;
 	@OneToMany
 	@JsonIgnore
-	Set<Invoice> invoices;
+	private Set<Invoice> invoices;
 
 
 }
