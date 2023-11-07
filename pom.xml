@@ -6,7 +6,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.7.13</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
     <groupId>tn.esprit</groupId>
     <artifactId>DevOps_Project</artifactId>
@@ -76,7 +76,6 @@
             <version>0.8.8</version>
         </dependency>
 
-
         <dependency>
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-registry-prometheus</artifactId>
@@ -130,10 +129,6 @@
                     </execution>
                 </executions>
             </plugin>
-
-
-
-
         </plugins>
 
         <finalName>5ARCTIC5-G5-Automatech</finalName>
