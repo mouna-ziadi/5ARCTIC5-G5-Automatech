@@ -14,6 +14,7 @@ import tn.esprit.devops_project.services.Iservices.IInvoiceService;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -24,37 +25,43 @@ public class InvoiceServiceImpl implements IInvoiceService {
 	final OperatorRepository operatorRepository;
 	final InvoiceDetailRepository invoiceDetailRepository;
 	final SupplierRepository supplierRepository;
-	
+
+
 	@Override
 	public List<Invoice> retrieveAllInvoices() {
 		return invoiceRepository.findAll();
 	}
+
 	@Override
 	public void cancelInvoice(Long invoiceId) {
-		// method 01
-		Invoice invoice = invoiceRepository.findById(invoiceId).orElseThrow(() -> new NullPointerException("Invoice not found"));
-		invoice.setArchived(true);
-		invoiceRepository.save(invoice);
-		//method 02 (Avec JPQL)
+		Optional<Invoice> optionalInvoice = invoiceRepository.findById(invoiceId);
+		if (optionalInvoice.isPresent()) {
+			Invoice invoice = optionalInvoice.get();
+			invoice.setArchived(true);
+			invoiceRepository.save(invoice);
+		} else {
+			log.error("Invoice not found for ID: {}", invoiceId);
+			throw new IllegalArgumentException("Invoice not found");
+		}
+		// Method 02 (Avec JPQL)
 		invoiceRepository.updateInvoice(invoiceId);
 	}
 
 	@Override
 	public Invoice retrieveInvoice(Long invoiceId) {
-
-		return invoiceRepository.findById(invoiceId).orElseThrow(() -> new NullPointerException("Invoice not found"));
+		return invoiceRepository.findById(invoiceId).orElseThrow(() -> new IllegalArgumentException("Invoice not found"));
 	}
 
 	@Override
 	public List<Invoice> getInvoicesBySupplier(Long idSupplier) {
-		Supplier supplier = supplierRepository.findById(idSupplier).orElseThrow(() -> new NullPointerException("Supplier not found"));
+		Supplier supplier = supplierRepository.findById(idSupplier).orElseThrow(() -> new IllegalArgumentException("Supplier not found"));
 		return (List<Invoice>) supplier.getInvoices();
 	}
 
 	@Override
 	public void assignOperatorToInvoice(Long idOperator, Long idInvoice) {
-		Invoice invoice = invoiceRepository.findById(idInvoice).orElseThrow(() -> new NullPointerException("Invoice not found"));
-		Operator operator = operatorRepository.findById(idOperator).orElseThrow(() -> new NullPointerException("Operator not found"));
+		Invoice invoice = invoiceRepository.findById(idInvoice).orElseThrow(() -> new IllegalArgumentException("Invoice not found"));
+		Operator operator = operatorRepository.findById(idOperator).orElseThrow(() -> new IllegalArgumentException("Operator not found"));
 		operator.getInvoices().add(invoice);
 		operatorRepository.save(operator);
 	}
@@ -63,6 +70,4 @@ public class InvoiceServiceImpl implements IInvoiceService {
 	public float getTotalAmountInvoiceBetweenDates(Date startDate, Date endDate) {
 		return invoiceRepository.getTotalAmountInvoiceBetweenDates(startDate, endDate);
 	}
-
-
 }
