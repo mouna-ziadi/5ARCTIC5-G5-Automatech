@@ -29,10 +29,9 @@ class SupplierServiceImplTest {
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);  // Initialize Mockito annotations
+        MockitoAnnotations.openMocks(this);  
         supplierList = new ArrayList<>();
 
-        // Sample data
         Supplier supplier1 = new Supplier(1L, "S1", "Supplier 1", SupplierCategory.ORDINAIRE, null);
         Supplier supplier2 = new Supplier(2L, "S2", "Supplier 2", SupplierCategory.ORDINAIRE, null);
         supplierList.add(supplier1);
@@ -41,13 +40,12 @@ class SupplierServiceImplTest {
 
     @Test
     public void testRetrieveAllSuppliers() {
-        // Mock the behavior of the repository
         Mockito.when(supplierRepository.findAll()).thenReturn(supplierList);
 
-        // Execute the service method
+       
         List<Supplier> listSuppliers = supplierService.retrieveAllSuppliers();
 
-        // Verify the results
+        
         assertEquals(2, listSuppliers.size());
     }
 
@@ -55,13 +53,13 @@ class SupplierServiceImplTest {
     public void testAddSupplier() {
         Supplier newSupplier = new Supplier(3L, "S3", "Supplier 3", SupplierCategory.ORDINAIRE, null);
 
-        // Mock the behavior of the repository's save method
+        
         Mockito.when(supplierRepository.save(newSupplier)).thenReturn(newSupplier);
 
-        // Execute the service method
+       
         Supplier addedSupplier = supplierService.addSupplier(newSupplier);
 
-        // Verify the results
+        
         assertNotNull(addedSupplier);
         assertEquals(newSupplier, addedSupplier);
     }
@@ -70,13 +68,13 @@ class SupplierServiceImplTest {
     public void testUpdateSupplier() {
         Supplier existingSupplier = new Supplier(1L, "S1", "Updated Supplier 1", SupplierCategory.ORDINAIRE, null);
 
-        // Mock the behavior of the repository's save method
+       
         Mockito.when(supplierRepository.save(existingSupplier)).thenReturn(existingSupplier);
 
-        // Execute the service method
+       
         Supplier updatedSupplier = supplierService.updateSupplier(existingSupplier);
 
-        // Verify the results
+        
         assertNotNull(updatedSupplier);
         assertEquals(existingSupplier, updatedSupplier);
     }
@@ -85,13 +83,13 @@ class SupplierServiceImplTest {
     public void testDeleteSupplier() {
         long supplierId = 1L;
 
-        // Mock the behavior of the repository's deleteById method
+        
         Mockito.doNothing().when(supplierRepository).deleteById(supplierId);
 
-        // Execute the service method
+       
         supplierService.deleteSupplier(supplierId);
 
-        // Verification is done using the mocked repository methods
+      
         Mockito.verify(supplierRepository, Mockito.times(1)).deleteById(supplierId);
     }
 
@@ -100,13 +98,13 @@ class SupplierServiceImplTest {
         long supplierId = 1L;
         Supplier supplier = new Supplier(supplierId, "S1", "Supplier 1", SupplierCategory.ORDINAIRE, null);
 
-        // Mock the behavior of the repository's findById method
+        
         Mockito.when(supplierRepository.findById(supplierId)).thenReturn(Optional.of(supplier));
 
-        // Execute the service method
+        
         Supplier retrievedSupplier = supplierService.retrieveSupplier(supplierId);
 
-        // Verify the results
+        
         assertNotNull(retrievedSupplier);
         assertEquals(supplier, retrievedSupplier);
     }
