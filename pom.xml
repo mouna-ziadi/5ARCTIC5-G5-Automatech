@@ -9,10 +9,10 @@
         <relativePath/>
     </parent>
     <groupId>tn.esprit</groupId>
-    <artifactId>DevOps_Project</artifactId>
+    <artifactId>5ARCTIC5-G5-Automatech</artifactId>
     <version>1.0</version>
-    <name>DevOps_Project</name>
-    <description>DevOps_Project</description>
+    <name>5ARCTIC5-G5-Automatech</name>
+    <description>5ARCTIC5-G5-Automatech</description>
     <properties>
         <java.version>11</java.version>
         <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
